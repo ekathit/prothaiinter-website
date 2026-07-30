@@ -24,7 +24,7 @@ export default function ProjectsPage() {
           </h1>
 
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-            Explore selected industrial equipment supplied by MeWi Thai
+            Explore selected industrial equipment supplied by ProThai
             across various industries.
           </p>
 

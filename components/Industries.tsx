@@ -1,11 +1,31 @@
+import Image from "next/image";
+
 export default function Industries() {
   const industries = [
-    { title: "Cement" },
-    { title: "Biomass" },
-    { title: "Pulp & Paper" },
-    { title: "Palm Oil" },
-    { title: "Sugar" },
-    { title: "Mining" },
+    {
+      title: "Cement",
+      image: "/images/cementind2.png",
+    },
+    {
+      title: "Biomass",
+      image: "/images/biomassind2.png",
+    },
+    {
+      title: "Pulp & Paper",
+      image: "/images/paperind2.png",
+    },
+    {
+      title: "Palm Oil",
+      image: "/images/palmoilind2.png",
+    },
+    {
+      title: "Sugar",
+      image: "/images/sugarind2.png",
+    },
+    {
+      title: "Mining & Quarry",
+      image: "/images/miningind2.png",
+    },
   ];
 
   return (
@@ -34,30 +54,60 @@ export default function Industries() {
         </div>
 
         {/* Cards */}
-
         <div className="mt-14 grid grid-cols-2 gap-5 lg:grid-cols-3 lg:gap-8">
 
           {industries.map((industry) => (
 
             <div
               key={industry.title}
-              className="group relative overflow-hidden rounded-2xl shadow-md"
+              className="group relative overflow-hidden rounded-2xl border border-gray-200 shadow-md transition-all duration-300 hover:border-blue-600 hover:shadow-xl"
             >
 
-              {/* Placeholder */}
-              <div className="aspect-[4/3] bg-slate-300 transition duration-500 group-hover:scale-105">
-                {/* ใส่รูปทีหลัง */}
-              </div>
+              {/* Image */}
+              <div className="relative aspect-[4/3] overflow-hidden">
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+                <Image
+                  src={industry.image}
+                  alt={industry.title}
+                  fill
+                  className="
+                    object-cover
+                    origin-center
+                    scale-[1.08]
+                    brightness-[0.82]
+                    transition-all
+                    duration-700
+                    ease-out
+                    group-hover:scale-[1.12]
+                    group-hover:brightness-100
+                  "
+                />
 
-              {/* Title */}
-              <div className="absolute inset-0 flex items-center justify-center">
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/20 transition-all duration-500 group-hover:bg-black/10" />
 
-                <h3 className="px-4 text-center text-xl font-bold text-white drop-shadow-lg lg:text-3xl">
-                  {industry.title}
-                </h3>
+                {/* Title */}
+                <div className="absolute inset-0 flex items-center justify-center">
+
+                  <h3
+                    className="
+                      px-6
+                      text-center
+                      text-xl
+                      font-bold
+                      text-white
+                      drop-shadow-[0_3px_10px_rgba(0,0,0,0.8)]
+                      transition-all
+                      duration-500
+                      group-hover:-translate-y-1
+                      sm:text-2xl
+                      lg:text-4xl
+                    "
+                  >
+                    {industry.title}
+                  </h3>
+
+                </div>
 
               </div>
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 const industries = [
   {
     category: "Cement Industry",
-    image: "/images/projects/cement.jpg",
+    image: "/images/cementpro.png",
     customers: [
       "SCG Kaeng Khoi",
       "SCG Thung Song",
@@ -13,7 +13,7 @@ const industries = [
   },
   {
     category: "Biomass Power Plant",
-    image: "/images/projects/biomass.jpg",
+    image: "/images/biomasspro.png",
     customers: [
       "Glow SPP2",
       "PPP Green Complex",
@@ -22,7 +22,7 @@ const industries = [
   },
   {
     category: "Paper & Pulp",
-    image: "/images/projects/paper.jpg",
+    image: "/images/paperpro.png",
     customers: [
       "SCG Packaging",
       "Siam Kraft Industry",
@@ -30,11 +30,12 @@ const industries = [
     ],
   },
   {
-    category: "Mining & Quarry",
-    image: "/images/projects/mining.jpg",
+    category: "Sugar Industry",
+    image: "/images/sugarpro.png",
     customers: [
-      "Sanon Quarry",
-      "Asia Cement Quarry...",
+      "Mitr Phol",
+      "Thai Roong Ruang",
+      "Khon Kaen Sugar...",
     ],
   },
 ];
@@ -100,17 +101,13 @@ export default function Projects() {
                 <ul className="mt-7 space-y-4 text-[15px] text-slate-500">
 
                   {item.customers.map((customer) => (
-
                     <li
                       key={customer}
                       className="flex items-center gap-3"
                     >
                       <span className="text-slate-400">▪</span>
-
                       {customer}
-
                     </li>
-
                   ))}
 
                 </ul>

@@ -1,34 +1,42 @@
+import Image from "next/image";
+
 export default function Solutions() {
   const solutions = [
     {
       title: "Industrial Chains",
-      desc: "Reliable conveyor, drag and bucket elevator chains for cement, biomass and heavy industries.",
+      desc: "Reliable conveyor, drag and bucket elevator chains for cement, biomass and other heavy-duty industrial applications.",
+      image: "/images/reclaimercard.png",
     },
     {
       title: "Conveyor Belts",
-      desc: "Durable rubber conveyor belts designed for reliable material handling across demanding industries.",
+      desc: "High-quality conveyor belts designed for reliable bulk material handling with long service life and excellent durability.",
+      image: "/images/beltcard.png",
     },
     {
       title: "Rollers",
-      desc: "High-performance conveyor rollers engineered for long service life and reduced maintenance.",
-    },
-    {
-      title: "Wear Parts",
-      desc: "Custom wear parts and replacement components manufactured for harsh industrial environments.",
-    },
-    {
-      title: "Engineering & QC",
-      desc: "Engineering support, product verification and third-party inspection to ensure quality and compliance.",
-    },
-    {
-      title: "Global Sourcing",
-      desc: "Worldwide sourcing and procurement support through carefully selected manufacturing partners.",
+      desc: "Heavy-duty conveyor rollers engineered for smooth operation, reduced maintenance and extended equipment life.",
+      image: "/images/rollercard.png",
     },
   ];
 
   return (
-    <section id="solutions" className="bg-white pt-16 pb-6 lg:pt-24 lg:pb-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section
+      id="solutions"
+      className="relative overflow-hidden pt-16 pb-6 lg:pt-24 lg:pb-20"
+    >
+      {/* Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/images/solutionbackground.png')",
+        }}
+      />
+
+      {/* White Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/80 to-white/90" />
+
+      {/* Content */}
+      <div className="relative mx-auto max-w-7xl px-6">
 
         {/* Heading */}
         <div className="text-center">
@@ -41,30 +49,32 @@ export default function Solutions() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-gray-600">
-            We deliver engineering, procurement and industrial solutions that
-            improve reliability, productivity and operational efficiency for
-            heavy industries.
+            We supply high-quality industrial products together with engineering
+            support and procurement services to improve equipment reliability,
+            operational efficiency and long-term performance.
           </p>
         </div>
 
         {/* Cards */}
         <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-
           {solutions.map((item) => (
-
             <div
               key={item.title}
               className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl"
             >
-
-              {/* Image Placeholder */}
-              <div className="aspect-[16/9] bg-slate-200">
-                {/* ใส่รูปทีหลัง */}
+              {/* Image */}
+              <div className="relative aspect-[16/9] overflow-hidden">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width:768px) 100vw, (max-width:1280px) 50vw, 33vw"
+                  className="object-cover transition duration-500 hover:scale-105"
+                />
               </div>
 
               {/* Content */}
               <div className="p-6 lg:p-8">
-
                 <h3 className="text-xl font-bold text-gray-900 lg:text-2xl">
                   {item.title}
                 </h3>
@@ -72,13 +82,9 @@ export default function Solutions() {
                 <p className="mt-4 leading-7 text-gray-600">
                   {item.desc}
                 </p>
-
               </div>
-
             </div>
-
           ))}
-
         </div>
 
       </div>

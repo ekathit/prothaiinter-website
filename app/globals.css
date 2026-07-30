@@ -44,9 +44,36 @@ body {
 
 /* =========================
    Anchor Offset
-   (Navbar สูงประมาณ 80px)
 ========================= */
 
 section[id] {
   scroll-margin-top: 100px;
+}
+
+/* =========================
+   Partner Logo Marquee
+========================= */
+
+.partner-marquee {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: max-content;
+  will-change: transform;
+  animation: partner-scroll 30s linear infinite;
+}
+
+.partner-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes partner-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }

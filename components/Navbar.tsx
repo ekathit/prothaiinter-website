@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -29,24 +30,25 @@ export default function Navbar() {
   }, [pathname]);
 
   const home = isThai ? "/th" : "/";
-  const news = "/news";
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
-
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-[#FFFFFF]">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
 
         {/* Logo */}
 
-        <Link href={home} className="flex flex-col">
-          <span className="text-3xl font-black tracking-tight text-blue-700">
-            MEWI
-          </span>
+        <Link href={home} className="flex items-center">
 
-          <span className="text-[11px] uppercase tracking-[0.18em] text-gray-500">
-            Industrial Supply & Engineering
-          </span>
-        </Link>
+  <Image
+    src="/images/prothai-logo-v2.png"
+    alt="ProThai Inter Supply & Solution Co., Ltd."
+    width={300}
+    height={60}
+    priority
+    className="h-20 w-auto"
+  />
+
+</Link>
 
         {/* Desktop Navigation */}
 
@@ -66,10 +68,6 @@ export default function Navbar() {
 
           <Link href={`${home}#projects`} className="transition hover:text-blue-600">
             Projects
-          </Link>
-
-          <Link href={news} className="transition hover:text-blue-600">
-            Updates & Insights
           </Link>
 
           <Link href={`${home}#contact`} className="transition hover:text-blue-600">
@@ -165,14 +163,6 @@ export default function Navbar() {
             onClick={() => setMenuOpen(false)}
           >
             Projects
-          </Link>
-
-          <Link
-            href={news}
-            className="py-2"
-            onClick={() => setMenuOpen(false)}
-          >
-            Updates & Insights
           </Link>
 
           <Link

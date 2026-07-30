@@ -1,7 +1,10 @@
+import Image from "next/image";
+import Link from "next/link";
+
 const industries = [
   {
     category: "Cement Industry",
-    image: "/projects/cement.jpg",
+    image: "/images/cementpro.png",
     customers: [
       "SCG แก่งคอย",
       "SCG ทุ่งสง",
@@ -10,7 +13,7 @@ const industries = [
   },
   {
     category: "Biomass Power Plant",
-    image: "/projects/biomass.jpg",
+    image: "/images/biomasspro.png",
     customers: [
       "Glow SPP2",
       "PPP Green Complex",
@@ -19,7 +22,7 @@ const industries = [
   },
   {
     category: "Paper & Pulp",
-    image: "/projects/paper.jpg",
+    image: "/images/paperpro.png",
     customers: [
       "SCG Packaging",
       "Siam Kraft Industry",
@@ -27,16 +30,15 @@ const industries = [
     ],
   },
   {
-    category: "Mining & Quarry",
-    image: "/projects/mining.jpg",
+    category: "Sugar Industry",
+    image: "/images/sugarpro.png",
     customers: [
-      "โรงโม่หินสานนท์",
-      "Asia Cement Quarry...",
+      "มิตรผล",
+      "ไทยรุ่งเรือง",
+      "เอราวัณ",
     ],
   },
 ];
-import Image from "next/image";
-import Link from "next/link";
 
 export default function Projects() {
   return (
@@ -45,6 +47,8 @@ export default function Projects() {
       className="bg-white pt-10 pb-24 lg:py-24"
     >
       <div className="mx-auto max-w-7xl px-6">
+
+        {/* Header */}
 
         <div className="text-center">
 
@@ -57,20 +61,23 @@ export default function Projects() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-3xl text-lg text-slate-600">
-            ตัวอย่างสินค้าและบริการที่เราเคยส่งมอบ
+            ตัวอย่างโครงการที่เราเคยส่งมอบ
           </p>
 
         </div>
+
+        {/* Cards */}
 
         <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
 
           {industries.map((item) => (
             <div
               key={item.category}
-              className="overflow-hidden rounded-3xl bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+              className="flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
             >
+              {/* Image */}
 
-              <div className="relative h-64">
+              <div className="relative h-64 bg-slate-200">
 
                 <Image
                   src={item.image}
@@ -81,9 +88,9 @@ export default function Projects() {
 
               </div>
 
-              <div className="p-7">
+              {/* Content */}
 
-                {/* Category */}
+              <div className="flex flex-1 flex-col p-7">
 
                 <h3 className="text-2xl font-bold text-slate-900">
                   {item.category}
@@ -91,24 +98,16 @@ export default function Projects() {
 
                 <div className="mt-3 h-1 w-10 rounded bg-blue-600" />
 
-                {/* Customers */}
-
-                <ul className="mt-7 space-y-3">
+                <ul className="mt-7 space-y-4 text-[15px] text-slate-500">
 
                   {item.customers.map((customer) => (
-
                     <li
                       key={customer}
-                      className="flex items-center text-[15px] text-slate-500"
+                      className="flex items-center gap-3"
                     >
-                      <span className="mr-3 text-slate-400">
-                        ▪
-                      </span>
-
+                      <span className="text-slate-400">▪</span>
                       {customer}
-
                     </li>
-
                   ))}
 
                 </ul>
@@ -120,7 +119,7 @@ export default function Projects() {
 
         </div>
 
-        {/* View All */}
+        {/* Button */}
 
         <div className="mt-12 flex justify-end">
 

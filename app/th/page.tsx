@@ -4,7 +4,6 @@ import WhyChooseTh from "@/components/WhyChooseTh";
 import SolutionsTh from "@/components/SolutionsTh";
 import IndustriesTh from "@/components/IndustriesTh";
 import ProjectsTh from "@/components/ProjectsTh";
-import HowWeWork from "@/components/HowWeWork";
 import Contact from "@/components/Contact";
 
 
@@ -17,7 +16,6 @@ export default function ThaiPage() {
       <SolutionsTh />
       <IndustriesTh />
       <ProjectsTh />
-      <HowWeWork />
       <Contact />
 
     </>
