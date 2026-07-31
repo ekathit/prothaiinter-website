@@ -8,7 +8,19 @@ export default function Hero() {
   const [startCount, setStartCount] = useState(false);
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center bg-slate-950 px-6 pt-32 lg:pt-20 text-white">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 px-6 pt-32 lg:pt-20 text-white">
+
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src="/videos/prothaihero.mp4" type="video/mp4" />
+      </video>
+
       {/* Background Overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.78),rgba(15,23,42,0.88))]" />
 

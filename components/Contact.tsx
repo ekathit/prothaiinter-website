@@ -63,7 +63,7 @@ export default function Contact() {
                 <p className="font-semibold">📍 Address</p>
 
                 <p>
-                  121/259 Moo 5, Pak Kret Subdistrict, Pak Kret District
+                  47/341 Kaitak Building, 5th Floor, Popular Road, Banmai, Pak Kret
                   <br />
                   Nonthaburi, 11120, Thailand
                 </p>
