@@ -10,149 +10,157 @@ export default function ProjectsPage() {
 
       <main className="min-h-screen bg-slate-50">
 
-      {/* Hero */}
+        {/* Hero */}
 
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-20">
+        <section className="relative overflow-hidden border-b border-slate-200">
 
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
-            Projects
-          </p>
+          {/* Background */}
+          <div
+            className="absolute inset-0 bg-cover bg-no-repeat"
+            style={{
+              backgroundImage: "url('/images/backgroundprojecthero.png')",
+              backgroundPosition: "center top",
+            }}
+          />
 
-          <h1 className="mt-4 text-5xl font-bold text-slate-900">
-            Industrial Supply Projects
-          </h1>
+          {/* Content */}
+          <div className="relative mx-auto max-w-7xl px-6 py-20">
 
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-            Explore selected industrial equipment supplied by ProThai
-            across various industries.
-          </p>
+            <h1 className="text-5xl font-bold text-slate-900">
+              Industrial Supply Projects
+            </h1>
 
-        </div>
-      </section>
-
-      {/* Search & Filter */}
-
-      <section className="border-b border-slate-200 bg-white">
-
-        <div className="mx-auto flex max-w-7xl flex-wrap gap-4 px-6 py-8">
-
-          <div className="relative flex-1 min-w-[260px]">
-
-            <Search
-              size={18}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
-            />
-
-            <input
-              type="text"
-              placeholder="Search Customer..."
-              className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 focus:border-blue-500 focus:outline-none"
-            />
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+              Explore selected industrial equipment supplied by ProThai
+              across various industries.
+            </p>
 
           </div>
 
-          <select className="rounded-xl border border-slate-300 px-4 py-3">
+        </section>
 
-            <option>All Categories</option>
-            <option>Cement Industry</option>
-            <option>Biomass Power Plant</option>
-            <option>Paper & Pulp</option>
-            <option>Mining & Quarry</option>
+        {/* Search & Filter */}
 
-          </select>
+        <section className="border-b border-slate-200 bg-white">
 
-          <select className="rounded-xl border border-slate-300 px-4 py-3">
+          <div className="mx-auto flex max-w-7xl flex-wrap gap-4 px-6 py-8">
 
-            <option>Latest Delivery</option>
-            <option>Oldest Delivery</option>
-            <option>Customer A-Z</option>
+            <div className="relative flex-1 min-w-[260px]">
 
-          </select>
+              <Search
+                size={18}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+              />
 
-        </div>
+              <input
+                type="text"
+                placeholder="Search Customer..."
+                className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 focus:border-blue-500 focus:outline-none"
+              />
 
-      </section>
+            </div>
 
-      {/* Projects */}
+            <select className="rounded-xl border border-slate-300 px-4 py-3">
 
-      <section className="py-16">
+              <option>All Categories</option>
+              <option>Cement Industry</option>
+              <option>Biomass Power Plant</option>
+              <option>Paper & Pulp</option>
+              <option>Mining & Quarry</option>
 
-        <div className="mx-auto max-w-7xl space-y-8 px-6">
+            </select>
 
-          {projects.map((project) => (
+            <select className="rounded-xl border border-slate-300 px-4 py-3">
 
-            <div
-  key={project.customer}
-  className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:shadow-lg"
->
+              <option>Latest Delivery</option>
+              <option>Oldest Delivery</option>
+              <option>Customer A-Z</option>
 
-              <div className="grid md:grid-cols-[380px_1fr]">
+            </select>
 
-                {/* Image */}
+          </div>
 
-                <div className="relative h-72 bg-slate-200">
+        </section>
 
-                  <Image
-                    src={project.image}
-                    alt={project.customer}
-                    fill
-                    className="object-cover"
-                  />
+        {/* Projects */}
 
-                </div>
+        <section className="py-16">
 
-                {/* Content */}
+          <div className="mx-auto max-w-7xl space-y-8 px-6">
 
-                <div className="flex items-center p-10">
+            {projects.map((project) => (
 
-                  <dl className="grid grid-cols-[170px_1fr] gap-y-6">
+              <div
+                key={project.customer}
+                className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:shadow-lg"
+              >
 
-                    <dd className="col-span-2">
+                <div className="grid md:grid-cols-[380px_1fr]">
 
-                      <span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-700">
-                        {project.category}
-                      </span>
+                  {/* Image */}
 
-                    </dd>
+                  <div className="relative h-72 bg-slate-200">
 
-                    <dt className="font-medium text-slate-400">
-                      Customer Name
-                    </dt>
+                    <Image
+                      src={project.image}
+                      alt={project.customer}
+                      fill
+                      className="object-cover"
+                    />
 
-                    <dd className="font-semibold text-slate-900">
-                      {project.customer}
-                    </dd>
+                  </div>
 
-                    <dt className="font-medium text-slate-400">
-                      Product
-                    </dt>
+                  {/* Content */}
 
-                    <dd className="text-slate-700">
-                      {project.product}
-                    </dd>
+                  <div className="flex items-center p-10">
 
-                    <dt className="font-medium text-slate-400">
-                      Delivered
-                    </dt>
+                    <dl className="grid grid-cols-[170px_1fr] gap-y-6">
 
-                    <dd className="text-slate-700">
-                      {project.delivered}
-                    </dd>
+                      <dd className="col-span-2">
 
-                  </dl>
+                        <span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-700">
+                          {project.category}
+                        </span>
+
+                      </dd>
+
+                      <dt className="font-medium text-slate-400">
+                        Customer Name
+                      </dt>
+
+                      <dd className="font-semibold text-slate-900">
+                        {project.customer}
+                      </dd>
+
+                      <dt className="font-medium text-slate-400">
+                        Product
+                      </dt>
+
+                      <dd className="text-slate-700">
+                        {project.product}
+                      </dd>
+
+                      <dt className="font-medium text-slate-400">
+                        Delivered
+                      </dt>
+
+                      <dd className="text-slate-700">
+                        {project.delivered}
+                      </dd>
+
+                    </dl>
+
+                  </div>
 
                 </div>
 
               </div>
 
-            </div>
+            ))}
 
-          ))}
+          </div>
 
-        </div>
-
-       </section>
+        </section>
 
       </main>
     </>

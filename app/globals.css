@@ -77,3 +77,20 @@ section[id] {
     transform: translate3d(-50%, 0, 0);
   }
 }
+/* =========================
+   Contact Background
+========================= */
+
+.contact-bg {
+  position: absolute;
+  inset: 0;
+
+  background-image: url("/images/backgroundcloud.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  opacity: 0.12;      /* ปรับความเข้มได้ */
+  z-index: 0;
+  pointer-events: none;
+}

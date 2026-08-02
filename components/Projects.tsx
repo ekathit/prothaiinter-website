@@ -6,8 +6,8 @@ const industries = [
     category: "Cement Industry",
     image: "/images/cementpro.png",
     customers: [
-      "SCG Kaeng Khoi",
-      "SCG Thung Song",
+      "SCG Cement",
+      "Asia Cement",
       "TPI Polene...",
     ],
   },
