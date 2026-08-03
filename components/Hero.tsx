@@ -61,18 +61,21 @@ export default function Hero() {
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.85, duration: 0.5 }}
-          className="mt-10 flex justify-center"
-        >
-          <a
-            href={`mailto:sales@prothaiinter.com?subject=Request%20for%20Quotation&body=Dear%20ProThai%20Team,%0D%0A%0D%0AWe%20would%20like%20to%20request%20a%20quotation%20for%20the%20following:%0D%0A%0D%0ACompany:%0D%0AContact%20Person:%0D%0AEmail:%0D%0APhone:%0D%0A%0D%0AProduct%20/%20Service%20Required:%0D%0A%0D%0AProject%20Details:%0D%0A%0D%0APlease%20attach%20your%20drawings%20or%20specifications.%0D%0A%0D%0AThank%20you.%0D%0A`}
-            className="rounded-xl bg-blue-600 px-9 py-4 text-base font-bold text-white shadow-xl transition hover:scale-105 hover:bg-blue-700"
-          >
-            Get a Quote
-          </a>
-        </motion.div>
+  initial={{ opacity: 0, y: 15 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.85, duration: 0.5 }}
+  className="mt-10 flex justify-center"
+>
+  <button
+    onClick={() => {
+      window.location.href =
+        "mailto:sales@prothaiinter.com?subject=Request%20for%20Quotation";
+    }}
+    className="rounded-xl bg-blue-600 px-9 py-4 text-base font-bold text-white shadow-xl transition hover:scale-105 hover:bg-blue-700"
+  >
+    Get a Quote
+  </button>
+</motion.div>
 
         {/* Statistics */}
         <motion.div
