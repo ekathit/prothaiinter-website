@@ -60,7 +60,7 @@ export default function Hero() {
         </motion.p>
 
         {/* CTA */}
-        <motion.div
+       <motion.div
   initial={{ opacity: 0, y: 15 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ delay: 0.85, duration: 0.5 }}
@@ -68,12 +68,13 @@ export default function Hero() {
 >
   <button
     onClick={() => {
-      window.location.href =
-        "mailto:sales@prothaiinter.com?subject=Request%20for%20Quotation";
+      document
+        .getElementById("contact")
+        ?.scrollIntoView({ behavior: "smooth" });
     }}
     className="rounded-xl bg-blue-600 px-9 py-4 text-base font-bold text-white shadow-xl transition hover:scale-105 hover:bg-blue-700"
   >
-    Get a Quote
+    Contact Us
   </button>
 </motion.div>
 
