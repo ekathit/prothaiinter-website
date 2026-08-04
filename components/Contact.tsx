@@ -1,4 +1,8 @@
 import Image from "next/image";
+import { FaWhatsapp } from "react-icons/fa";
+import { SiLine } from "react-icons/si";
+import { MdOutlineMail } from "react-icons/md";
+import { FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 
 export default function Contact() {
   const partners = [
@@ -53,14 +57,13 @@ export default function Contact() {
         ProThai Inter Supply & Solution Co.,Ltd
       </h3>
 
-      <p className="mt-1.5 text-sm font-semibold text-blue-600">
-        Sales Department
-      </p>
-
       <div className="mt-6 space-y-4 text-gray-700">
         <div>
-          <p className="font-semibold text-gray-900 text-sm">📍 Address</p>
-          <p className="mt-1 text-xs leading-relaxed text-gray-600">
+          <p className="flex items-center gap-2 font-semibold text-gray-900 text-base">
+  <FaMapMarkerAlt className="text-lg text-red-500" />
+  Address
+</p>
+          <p className="mt-1 text-sm leading-relaxed text-gray-600">
             47/341 Kaitak Building, 5th Floor, Popular Road, Banmai, Pak Kret
             <br />
             Nonthaburi, 11120, Thailand
@@ -68,14 +71,60 @@ export default function Contact() {
         </div>
 
         <div>
-          <p className="font-semibold text-gray-900 text-sm">☎ Phone</p>
-          <p className="mt-1 text-xs text-gray-600">+66 (0)2-1257096</p>
-          <p className="text-xs text-gray-600">+66 (0)62-891-9962</p>
+          <p className="flex items-center gap-2 font-semibold text-gray-900 text-base">
+  <FaPhoneAlt className="text-lg" />
+  Phone
+</p>
+          <p className="mt-1 text-sm text-gray-600">+66 (0)2-125-7096</p>
+          <p className="text-sm text-gray-600">+66 (0)62-891-9962</p>
         </div>
 
-        <div>
-          <p className="font-semibold text-gray-900 text-sm">✉ Email</p>
-          <p className="mt-1 text-xs text-gray-600 break-all">sales@prothaiinter.com</p>
+      <div className="mt-4">
+  <div className="flex items-center gap-2">
+   <p className="flex items-center gap-2 font-semibold text-gray-900 text-base">
+  <MdOutlineMail className="text-xl" />
+  Email
+</p>
+
+    <a
+      href="mailto:sales@prothaiinter.com"
+      className="text-base text-gray-600 hover:text-blue-600"
+    >
+      sales@prothaiinter.com
+    </a>
+  </div>
+</div>
+
+<div className="mt-6">
+  <p className="font-semibold text-gray-900 text-base flex items-center gap-2">
+    <FaWhatsapp className="text-green-500 text-xl" />
+    WhatsApp
+  </p>
+
+  <a
+    href="https://wa.me/66888695167"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-1 block text-base text-gray-600 hover:text-green-600"
+  >
+    +66 (0)88-869-5167
+  </a>
+</div>
+
+<div className="mt-6">
+  <p className="flex items-center gap-2 text-base font-semibold text-gray-900">
+    <SiLine className="text-xl text-green-500" />
+    LINE
+  </p>
+
+  <a
+    href="https://line.me/ti/p/hZ9wkHOgBO"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-1 block text-base text-gray-600 hover:text-green-600"
+  >
+    Connect via LINE
+  </a>
         </div>
       </div>
     </div>
