@@ -6,9 +6,9 @@ const industries = [
     category: "Cement Industry",
     image: "/images/cementpro.png",
     customers: [
-      "SCG แก่งคอย",
-      "SCG ทุ่งสง",
-      "TPI Polene...",
+      "SCG ซีเมนต์",
+      "ทีพีไอโพลีน",
+      "เอเชีย ซีเมนต์",
     ],
   },
   {
