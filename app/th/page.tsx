@@ -5,6 +5,7 @@ import SolutionsTh from "@/components/SolutionsTh";
 import IndustriesTh from "@/components/IndustriesTh";
 import ProjectsTh from "@/components/ProjectsTh";
 import Contact from "@/components/Contact";
+import FloatingContactBar from "@/components/FloatingContactBar";
 
 
 export default function ThaiPage() {
@@ -17,6 +18,7 @@ export default function ThaiPage() {
       <IndustriesTh />
       <ProjectsTh />
       <Contact />
+      <FloatingContactBar />
 
     </>
   );

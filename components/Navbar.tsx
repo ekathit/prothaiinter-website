@@ -13,20 +13,19 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    let nextIsThai = false;
+
     if (pathname.startsWith("/th")) {
       localStorage.setItem("lang", "th");
-      setIsThai(true);
-      return;
-    }
-
-    if (pathname === "/") {
+      nextIsThai = true;
+    } else if (pathname === "/") {
       localStorage.setItem("lang", "en");
-      setIsThai(false);
-      return;
+    } else {
+      nextIsThai = localStorage.getItem("lang") === "th";
     }
 
-    const savedLang = localStorage.getItem("lang");
-    setIsThai(savedLang === "th");
+    const frame = window.requestAnimationFrame(() => setIsThai(nextIsThai));
+    return () => window.cancelAnimationFrame(frame);
   }, [pathname]);
 
   const home = isThai ? "/th" : "/";

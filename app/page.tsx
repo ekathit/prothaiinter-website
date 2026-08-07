@@ -5,6 +5,7 @@ import Solutions from "../components/Solutions";
 import Industries from "../components/Industries";
 import Projects from "../components/Projects";
 import Contact from "../components/Contact";
+import FloatingContactBar from "../components/FloatingContactBar";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Industries />
       <Projects />
       <Contact />
+      <FloatingContactBar />
     </>
   );
 }
