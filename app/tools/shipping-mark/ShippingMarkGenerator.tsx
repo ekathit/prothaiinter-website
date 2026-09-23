@@ -10,23 +10,22 @@ import styles from "./shipping-mark.module.css";
 const qrTargetUrl = "https://prothaiinter.com";
 
 type ShippingMarkData = {
-  orderNo: string; prNo: string; customer: string; customerEnglish: string;
+  orderNo: string; poNo: string; referenceNo: string; customer: string; customerEnglish: string;
   packageNo: string; totalPackages: string; materialNo: string; product: string;
   quantity: string; quantityUnit: string; netWeight: string; grossWeight: string;
-  brand: string; poNo: string; qcPassed: boolean;
+  brand: string; qcPassed: boolean;
 };
 
 const emptyData: ShippingMarkData = {
-  orderNo: "", prNo: "", customer: "", customerEnglish: "",
+  orderNo: "", poNo: "", referenceNo: "", customer: "", customerEnglish: "",
   packageNo: "1", totalPackages: "1", materialNo: "", product: "", quantity: "",
-  quantityUnit: "", netWeight: "", grossWeight: "", brand: "",
-  poNo: "", qcPassed: true,
+  quantityUnit: "", netWeight: "", grossWeight: "", brand: "", qcPassed: true,
 };
 
 type TextField = Exclude<keyof ShippingMarkData, "qcPassed">;
 type Mode = "manual" | "upload";
 type PrintScope = "current" | "all";
-const commonFields: TextField[] = ["orderNo", "prNo", "customer", "customerEnglish", "totalPackages", "brand", "poNo"];
+const commonFields: TextField[] = ["orderNo", "poNo", "referenceNo", "customer", "customerEnglish", "totalPackages", "brand"];
 const handlingMarks = [
   { label: "THIS SIDE UP", src: "/shipping-mark/this-side-up.png" },
   { label: "HANDLE WITH CARE", src: "/shipping-mark/handle-with-care.png" },
@@ -52,10 +51,11 @@ function createDrafts(extraction: PackingListExtraction): ShippingMarkData[] {
   for (const item of extraction.items) {
     for (let index = 0; index < item.packageCount; index += 1) {
       drafts.push({
-        orderNo: "", prNo: "", customer: extraction.customer, customerEnglish: "",
+        orderNo: "", poNo: extraction.poNo, referenceNo: extraction.referenceNo,
+        customer: extraction.customer, customerEnglish: "",
         packageNo: String(packageNo), totalPackages: String(extraction.totalPackages), materialNo: "",
         product: item.product, quantity: item.quantity, quantityUnit: item.unit,
-        netWeight: "", grossWeight: "", brand: "", poNo: "", qcPassed: true,
+        netWeight: "", grossWeight: "", brand: "", qcPassed: true,
       });
       packageNo += 1;
     }
@@ -103,11 +103,11 @@ export default function ShippingMarkGenerator() {
       next.push({
         ...emptyData,
         orderNo: common.orderNo,
-        prNo: common.prNo,
+        poNo: common.poNo,
+        referenceNo: common.referenceNo,
         customer: common.customer,
         customerEnglish: common.customerEnglish,
         brand: common.brand,
-        poNo: common.poNo,
         qcPassed: common.qcPassed,
         packageNo: totalPackages,
         totalPackages,
@@ -192,12 +192,12 @@ export default function ShippingMarkGenerator() {
           <form className={styles.formGrid} onSubmit={(event) => event.preventDefault()}>
             <h3 className={styles.formSectionTitle}>Common fields</h3>
             <FormInput label="Order No." value={data.orderNo} onChange={(value) => updateField("orderNo", value)} />
-            <FormInput label="PR No." value={data.prNo} onChange={(value) => updateField("prNo", value)} />
+            <FormInput label="PO No." value={data.poNo} onChange={(value) => updateField("poNo", value)} />
+            <FormInput className={styles.fullField} label="Reference No. (optional)" value={data.referenceNo} onChange={(value) => updateField("referenceNo", value)} />
             <FormInput className={styles.fullField} label="Customer" value={data.customer} onChange={(value) => updateField("customer", value)} />
             <FormInput className={styles.fullField} label="Customer English Name (optional)" value={data.customerEnglish} onChange={(value) => updateField("customerEnglish", value)} />
             <FormInput label="Total Packages" type="number" min="1" value={data.totalPackages} readOnly={mode === "manual"} onChange={(value) => updateField("totalPackages", value)} />
             <FormInput label="Brand" value={data.brand} onChange={(value) => updateField("brand", value)} />
-            <FormInput className={styles.fullField} label="PO No." value={data.poNo} onChange={(value) => updateField("poNo", value)} />
             <div className={styles.packageSectionHeading}>
               <h3 className={styles.formSectionTitle}>Package-specific fields</h3>
               {mode === "manual" && <div className={styles.pageActions}><button type="button" onClick={addManualPage}><Plus size={16} aria-hidden="true" /> เพิ่มหน้า</button><button type="button" className={styles.removePageButton} disabled={manualDrafts.length === 1} onClick={removeManualPage}><Trash2 size={16} aria-hidden="true" /> ลบหน้านี้</button></div>}
@@ -244,11 +244,10 @@ function FormInput({ label, value, onChange, className = "", type = "text", min,
 
 function ShippingMarkDocument({ data, qrSvg, printPage = false }: { data: ShippingMarkData; qrSvg: string; printPage?: boolean }) {
   const customerIsLong = data.customer.length + data.customerEnglish.length > 80;
-  const poIsLong = data.poNo.length > 24;
   return (
     <article className={`${styles.shippingMark} ${printPage ? styles.printPage : ""}`}>
       <div className={styles.documentHeader}>SHIPPING MARK</div>
-      <div className={styles.brandRow}><div className={styles.logoWrap}><Image src="/images/prothai-logo-v2.png" alt="ProThai Inter Supply & Solution Co., Ltd." width={1683} height={529} priority /></div><div className={styles.orderBlock}><DocumentPair label="Order No." value={data.orderNo} /><DocumentPair label="PR No." value={data.prNo} /></div></div>
+      <div className={styles.brandRow}><div className={styles.logoWrap}><Image src="/images/prothai-logo-v2.png" alt="ProThai Inter Supply & Solution Co., Ltd." width={1683} height={529} priority /></div><div className={styles.orderBlock}><DocumentPair label="Order No." value={data.orderNo} /><DocumentPair label="PO No." value={data.poNo} />{data.referenceNo.trim() && <DocumentPair label="Reference No." value={data.referenceNo} />}</div></div>
       <div className={styles.infoTable}>
         <div className={`${styles.infoRow} ${styles.customerRow}`}><InfoLabel>Customer</InfoLabel><div className={`${styles.infoValue} ${customerIsLong ? styles.compactCustomer : ""}`}><strong>{displayValue(data.customer)}</strong>{data.customerEnglish.trim() && <span>{data.customerEnglish}</span>}</div></div>
         <div className={`${styles.infoRow} ${styles.packageRow}`}><InfoLabel>Package No.</InfoLabel><div className={`${styles.infoValue} ${styles.packageValue}`}>ลังที่ {displayValue(data.packageNo)}/{displayValue(data.totalPackages)}</div><div className={styles.totalPackage}><span>TOTAL PACKAGE</span><strong>{displayValue(data.packageNo)} / {displayValue(data.totalPackages)}</strong></div></div>
@@ -257,11 +256,11 @@ function ShippingMarkDocument({ data, qrSvg, printPage = false }: { data: Shippi
         <InfoRow label="Brand" value={data.brand} />
       </div>
       <div className={styles.handlingGrid}>{handlingMarks.map(({ label, src }) => <div className={styles.handlingMark} key={label}><Image src={src} alt={label} width={553} height={553} unoptimized /></div>)}</div>
-      <footer className={styles.documentFooter}><div className={styles.qrBlock}><div className={styles.qrCode} aria-label={`QR Code for ${qrTargetUrl}`} dangerouslySetInnerHTML={{ __html: qrSvg }} /></div><div className={styles.companyInfo}><strong>PROTHAI INTER SUPPLY &amp; SOLUTION CO.,LTD</strong><span>47/341 Kaitak Building, 5th Floor, Popular Road, Banmai, Pak Kret</span><span>Nonthaburi, 11120, Thailand</span><span>Tel: +66 (0)2-125-7096 · +66 (0)62-891-9962</span><span>Email: sales@prothaiinter.com · prothaiinter.com</span></div><div className={`${styles.footerStatus} ${poIsLong ? styles.compactPo : ""}`}><span>PO: {displayValue(data.poNo)}</span>{data.qcPassed && <strong>QC PASSED</strong>}</div></footer>
+      <footer className={styles.documentFooter}><div className={styles.qrBlock}><div className={styles.qrCode} aria-label={`QR Code for ${qrTargetUrl}`} dangerouslySetInnerHTML={{ __html: qrSvg }} /></div><div className={styles.companyInfo}><strong>PROTHAI INTER SUPPLY &amp; SOLUTION CO.,LTD</strong><span>47/341 Kaitak Building, 5th Floor, Popular Road, Banmai, Pak Kret</span><span>Nonthaburi, 11120, Thailand</span><span>Tel: +66 (0)2-125-7096 · +66 (0)62-891-9962</span><span>Email: sales@prothaiinter.com · prothaiinter.com</span></div><div className={styles.footerStatus}>{data.qcPassed && <Image src="/shipping-mark/qc-passed.png" alt="QC PASSED" width={1254} height={1254} unoptimized />}</div></footer>
     </article>
   );
 }
 
-function DocumentPair({ label, value }: { label: string; value: string }) { return <div><span>{label}</span><b>:</b><strong>{displayValue(value)}</strong></div>; }
+function DocumentPair({ label, value }: { label: string; value: string }) { return <div className={label === "Reference No." ? styles.referencePair : undefined}><span>{label}</span><b>:</b><strong>{displayValue(value)}</strong></div>; }
 function InfoLabel({ children }: { children: React.ReactNode }) { return <div className={styles.infoLabel}>{children}</div>; }
 function InfoRow({ label, value, emphasize = false, compact = false }: { label: string; value: string; emphasize?: boolean; compact?: boolean }) { return <div className={styles.infoRow}><InfoLabel>{label}</InfoLabel><div className={`${styles.infoValue} ${emphasize ? styles.emphasize : ""} ${compact ? styles.compactValue : ""}`}>{displayValue(value)}</div></div>; }

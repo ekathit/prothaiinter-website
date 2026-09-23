@@ -18,6 +18,12 @@ function tokenAfterLabel(tokens: PdfTextToken[], label: RegExp) {
     .trim();
 }
 
+function explicitFieldValue(tokens: PdfTextToken[], label: RegExp, inline: RegExp) {
+  const inlineToken = tokens.find((token) => inline.test(token.text));
+  if (inlineToken) return inlineToken.text.match(inline)?.[1]?.trim() ?? "";
+  return tokenAfterLabel(tokens, label);
+}
+
 function parseQuantity(source: string) {
   const normalized = source.replace(/\s+/g, " ").trim();
   const simple = normalized.match(/^(\d+(?:\.\d+)?)\s+([A-Za-z]+)$/);
@@ -80,16 +86,30 @@ export function parsePackingList(tokens: PdfTextToken[]): PackingListExtraction 
   }
   warnings.push(
     "Order No.: Not found",
-    "PR No.: Not found",
     "Material No.: Not found",
     "Net Weight: Not found",
     "Brand: Not found",
-    "PO No.: Not found",
   );
+
+  const poNo = explicitFieldValue(
+    sorted,
+    /^(?:PO|P\.O\.)\s*(?:No\.?|Number)?\s*:?$/i,
+    /^(?:PO|P\.O\.)\s*(?:No\.?|Number)?\s*[:#-]\s*(.+)$/i,
+  );
+  const referenceNo = explicitFieldValue(
+    sorted,
+    /^(?:(?:Reference|Ref\.?|PR)\s*(?:No\.?|Number))\s*:?$/i,
+    /^(?:(?:Reference|Ref\.?|PR)\s*(?:No\.?|Number))\s*[:#-]\s*(.+)$/i,
+  );
+
+  if (!poNo) warnings.push("PO No.: Not found");
+  if (!referenceNo) warnings.push("Reference No.: Not found");
 
   return {
     customer: tokenAfterLabel(sorted, /^To:?$/i),
     attention: tokenAfterLabel(sorted, /^Att:?$/i),
+    poNo,
+    referenceNo,
     totalPackages,
     items,
     warnings,

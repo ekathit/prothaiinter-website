@@ -22,6 +22,8 @@ export type PackingListItem = {
 export type PackingListExtraction = {
   customer: string;
   attention: string;
+  poNo: string;
+  referenceNo: string;
   totalPackages: number;
   items: PackingListItem[];
   warnings: string[];
