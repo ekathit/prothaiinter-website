@@ -156,7 +156,7 @@ export default function ShippingMarkGenerator() {
   return (
     <main className={styles.workspace}>
       <header className={styles.toolbar}>
-        <div><p className={styles.eyebrow}>ProThai Internal Tool</p><h1>Shipping Mark Generator</h1><p>ข้อมูลและไฟล์ที่อัปโหลดจะไม่ถูกบันทึก</p></div>
+        <div><p className={styles.eyebrow}>ProThai Internal Tool</p><h1>Shipping Mark Generator</h1><p>ข้อมูลและไฟล์ที่อัปโหลดจะไม่ถูกบันทึก กรุณา Export PDF ก่อนออกจากหน้านี้</p></div>
         <div className={styles.actions}>
           <button type="button" className={styles.secondaryButton} onClick={() => printDocuments("current")}><Printer size={18} aria-hidden="true" /> Print current</button>
           <button type="button" className={styles.primaryButton} onClick={() => printDocuments(drafts.length > 1 ? "all" : "current")}><FileDown size={18} aria-hidden="true" /> {drafts.length > 1 ? `Export all ${drafts.length}` : "Export PDF"}</button>
@@ -250,7 +250,7 @@ function ShippingMarkDocument({ data, qrSvg, printPage = false }: { data: Shippi
       <div className={styles.brandRow}><div className={styles.logoWrap}><Image src="/images/prothai-logo-v2.png" alt="ProThai Inter Supply & Solution Co., Ltd." width={1683} height={529} priority /></div><div className={styles.orderBlock}><DocumentPair label="Order No." value={data.orderNo} /><DocumentPair label="PO No." value={data.poNo} />{data.referenceNo.trim() && <DocumentPair label="Reference No." value={data.referenceNo} />}</div></div>
       <div className={styles.infoTable}>
         <div className={`${styles.infoRow} ${styles.customerRow}`}><InfoLabel>Customer</InfoLabel><div className={`${styles.infoValue} ${customerIsLong ? styles.compactCustomer : ""}`}><strong>{displayValue(data.customer)}</strong>{data.customerEnglish.trim() && <span>{data.customerEnglish}</span>}</div></div>
-        <div className={`${styles.infoRow} ${styles.packageRow}`}><InfoLabel>Package No.</InfoLabel><div className={`${styles.infoValue} ${styles.packageValue}`}>ลังที่ {displayValue(data.packageNo)}/{displayValue(data.totalPackages)}</div><div className={styles.totalPackage}><span>TOTAL PACKAGE</span><strong>{displayValue(data.packageNo)} / {displayValue(data.totalPackages)}</strong></div></div>
+        <div className={`${styles.infoRow} ${styles.packageRow}`}><InfoLabel>PACKAGE</InfoLabel><div className={`${styles.infoValue} ${styles.packageValue}`}><span>{displayValue(data.packageNo)} / {displayValue(data.totalPackages)}</span></div></div>
         <InfoRow label="Material No." value={data.materialNo} compact={data.materialNo.length > 30} /><InfoRow label="Product" value={data.product} emphasize compact={data.product.length > 55} /><InfoRow label="Quantity" value={[data.quantity, data.quantityUnit].filter(Boolean).join(" ")} />
         <div className={`${styles.infoRow} ${styles.weightRow}`}><InfoLabel>Net Weight</InfoLabel><div className={styles.infoValue}>{data.netWeight.trim() ? `${data.netWeight} Kgs` : "—"}</div><InfoLabel>Gross Weight</InfoLabel><div className={styles.infoValue}>{data.grossWeight.trim() ? `${data.grossWeight} Kgs` : "—"}</div></div>
         <InfoRow label="Brand" value={data.brand} />

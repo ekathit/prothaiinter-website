@@ -684,31 +684,24 @@
 
 .packageRow {
   min-height: 24mm;
-  grid-template-columns: 45mm minmax(0, 1fr) 44mm;
+  grid-template-columns: 45mm minmax(0, 1fr);
 }
 
 .packageValue {
-  font-size: 9.3mm;
+  display: grid;
+  grid-template-columns: 4mm minmax(0, 1fr);
+  column-gap: 3mm;
+  font-size: 10.5mm;
   font-weight: 900;
   white-space: nowrap;
 }
 
-.totalPackage {
-  display: grid;
-  place-content: center;
-  border-left: 0.35mm solid #101418;
+.packageValue::before {
+  margin: 0;
+}
+
+.packageValue span {
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.totalPackage span {
-  font-size: 3.4mm;
-  font-weight: 900;
-}
-
-.totalPackage strong {
-  font-size: 7.5mm;
-  line-height: 1.1;
 }
 
 .emphasize {
