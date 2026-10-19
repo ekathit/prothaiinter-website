@@ -13,6 +13,7 @@ export default function Contact() {
     { name: "Shining", file: "shininglogo.png", width: 120 },
     { name: "doublearrow", file: "doublearrowlogo.jpg", width: 120 },
     { name: "dongyang", file: "dongyanglogo.png", width: 120 },
+    { name: "Qadri Group", file: "qadrilogo.jpg", width: 120 },
   ];
 
   return (
