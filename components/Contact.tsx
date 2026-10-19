@@ -13,7 +13,7 @@ export default function Contact() {
     { name: "Shining", file: "shininglogo.png", width: 120 },
     { name: "doublearrow", file: "doublearrowlogo.jpg", width: 120 },
     { name: "dongyang", file: "dongyanglogo.png", width: 120 },
-    { name: "Qadri Group", file: "qadrilogo.jpg", width: 120 },
+    { name: "Qadri Group", file: "qadrilogo.jpg", width: 80, height: 60 },
   ];
 
   return (
@@ -205,7 +205,7 @@ export default function Contact() {
                     src={`/images/${partner.file}`}
                     alt={partner.name}
                     width={partner.width}
-                    height={90}
+                    height={"height" in partner ? partner.height : 90}
                     className="object-contain transition-all duration-300 hover:scale-110"
                   />
                 </div>
